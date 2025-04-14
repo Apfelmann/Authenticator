@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "/eEKf1EsKYI=",
+  "success": true,
+  "projectFilePath": "C:\\Repos\\Authentication\\JWTAuth\\JWTAuth\\JWTAuth.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Apfelmann\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\Apfelmann\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\Apfelmann\\.nuget\\packages\\scalar.aspnetcore\\2.1.13\\scalar.aspnetcore.2.1.13.nupkg.sha512"
+  ],
+  "logs": []
+}
