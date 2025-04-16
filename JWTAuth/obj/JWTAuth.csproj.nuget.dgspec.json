@@ -55,6 +55,14 @@
               "target": "Package",
               "version": "[9.0.3, )"
             },
+            "OpenIddict.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "OpenIddict.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
             "Scalar.AspNetCore": {
               "target": "Package",
               "version": "[2.1.13, )"

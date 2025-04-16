@@ -15,6 +15,11 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+**/bin/
+/bin/
+bin/*
+OBJ/*
+bin/
 x64/
 x86/
 bld/
