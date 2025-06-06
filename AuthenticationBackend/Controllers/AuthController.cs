@@ -1,6 +1,7 @@
 ﻿using Authentication.Services;
 using JWTAuth.Entities;
 using JWTAuth.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWTAuth.Controllers
@@ -14,9 +15,9 @@ namespace JWTAuth.Controllers
         {
             var user = await authService.RegisterAsync(request);
 
-            if(user is null)
+            if (user is null)
             {
-               return BadRequest("Username exist");
+                return BadRequest("Username exist");
             }
 
             return Ok(user);
@@ -25,12 +26,20 @@ namespace JWTAuth.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
-           var token = await authService.LoginAsync(request);
+            var token = await authService.LoginAsync(request);
             if (token is null)
             {
                 return Unauthorized("Invalid username or password");
             }
             return Ok(token);
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult AuthenticatedOnlyEndpoint()
+        {
+            return Ok("You are authenticated!");
+        }
+        
     }
 }
