@@ -1,4 +1,5 @@
 ﻿using Authentication.Services;
+using AuthenticationBackend.Models;
 using JWTAuth.Entities;
 using JWTAuth.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -24,14 +25,25 @@ namespace JWTAuth.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
+        public async Task<ActionResult<TokenResponseDto>> Login(UserDto request)
         {
-            var token = await authService.LoginAsync(request);
-            if (token is null)
+            var response = await authService.LoginAsync(request);
+            if (response is null)
             {
                 return Unauthorized("Invalid username or password");
             }
-            return Ok(token);
+            return Ok(response);
+        }
+
+        [HttpPost("refresh-token")]
+        public async Task<ActionResult<TokenResponseDto>> RefreshToken(RefreshTokenRequestDto request)
+        {
+            var response = await authService.RefreshTokenAsync(request);
+            if (response is null || response.RefreshToken is null || response.AccessToken is null)
+            {
+                return Unauthorized("Invalid refresh token");
+            }
+            return Ok(response);
         }
 
         [HttpGet]
@@ -39,6 +51,13 @@ namespace JWTAuth.Controllers
         public IActionResult AuthenticatedOnlyEndpoint()
         {
             return Ok("You are authenticated!");
+        }
+        // example of an endpoint that requires a specific role
+        [HttpGet("admin-only")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminOnlyEndpoint()
+        {
+            return Ok("You are an Admin!");
         }
         
     }
